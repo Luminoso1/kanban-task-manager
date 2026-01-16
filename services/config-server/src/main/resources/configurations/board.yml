@@ -1,5 +1,8 @@
 server:
-  port: ${BOARD_SERVICE_PORT:8090}
+  port: ${BOARD_SERVICE_PORT}
+
+gateway:
+  internal-secret: ${GATEWAY_INTERNAL_SECRET}
 
 spring:
   application:
@@ -15,7 +18,7 @@ spring:
 
 eureka:
   instance:
-    hostname: ${EUREKA_HOST:localhost }
+    hostname: ${EUREKA_HOST:localhost}
   client:
     register-with-eureka: true
     fetch-registry: true
@@ -24,4 +27,4 @@ eureka:
 
 application:
   config:
-    task-url: ${TASK_SERVICE_URL:http://localhost:8080/tasks}
+    task-url: ${TASK_SERVICE_URL}

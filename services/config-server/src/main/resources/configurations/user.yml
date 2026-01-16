@@ -1,0 +1,24 @@
+server:
+  port: ${USER_SERVICE_PORT}
+
+spring:
+  application:
+    name: user
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${USER_DB_URI}
+    username: ${USER_DB_USERNAME}
+    password: ${USER_DB_PASSWORD}
+
+  jpa:
+    hibernate:
+      ddl-auto: create
+
+eureka:
+  instance:
+    hostname: ${EUREKA_HOST:localhost}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    serviceUrl:
+      defaultZone: http://${EUREKA_HOST:localhost}:${EUREKA_PORT:8761}/eureka

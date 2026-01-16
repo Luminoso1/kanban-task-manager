@@ -69,6 +69,7 @@ public class TaskController {
 
     @PatchMapping
     public ResponseEntity<Task> updateTask(@RequestBody Task taskRequest) {
+        System.out.println("Hi there Im hereeeeeeeeeeeeeeeeeee");
         Task task = this.updateTaskUseCase.updateTask(taskRequest);
         return ResponseEntity.ok(task);
     }

@@ -1,5 +1,8 @@
 server:
-  port: ${TASK_SERVICE_PORT:9090}
+  port: ${TASK_SERVICE_PORT}
+
+gateway:
+  internal-secret: ${GATEWAY_INTERNAL_SECRET}
 
 spring:
   application:
@@ -25,4 +28,4 @@ eureka:
 
 application:
   config:
-    board-url: ${BOARD_SERVICE_URL:http://localhost:8080/boards}
+    board-url: ${BOARD_SERVICE_URL}

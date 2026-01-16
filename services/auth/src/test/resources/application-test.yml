@@ -1,0 +1,19 @@
+application:
+  config:
+    user-url: http://localhost:8080/api/v1/users
+
+gateway:
+  internal-secret: dummy-secret-for-tests
+
+jwt:
+  secret: test-jwt-secret-1234567890123456789012345678901234567890  # 256 bits HS512
+  access-token-expiration-ms: 86400000        # 24 horas
+  refresh-token-expiration-ms: 604800000  # 7 días
+
+logging:
+  level:
+    com.microservice.auth: DEBUG
+
+app:
+  security:
+    permit-all-endpoints: /signup,/api/v1/auth/signup,/api/v1/auth/login

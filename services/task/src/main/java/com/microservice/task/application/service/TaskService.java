@@ -10,14 +10,21 @@ import com.microservice.task.application.port.in.UpdateTaskUseCase;
 import com.microservice.task.application.port.out.TaskRepository;
 import com.microservice.task.application.port.out.client.BoardServiceClient;
 import com.microservice.task.domain.models.Task;
+import com.microservice.task.domain.models.TaskPriority;
+import com.microservice.task.domain.models.TaskStatus;
 import feign.FeignException;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class TaskService implements CreateTaskUseCase, GetTaskUseCase, UpdateTaskUseCase, DeleteTaskUseCase {
+
+    @Value("${gateway.internal-secret}")
+    private String internalSecret;
 
     private final TaskRepository taskRepository;
     private final BoardServiceClient boardServiceClient;
@@ -30,7 +37,16 @@ public class TaskService implements CreateTaskUseCase, GetTaskUseCase, UpdateTas
     @Override
     public Task createTask(Task task) {
         validateBoardExists(task.boardId());
-        return this.taskRepository.save(task);
+        Task newTask = new Task(
+                null,
+                task.boardId(),
+                task.title(),
+                task.description(),
+                task.status() != null ? task.status() : TaskStatus.TODO,
+                task.dueDate(),
+                task.priority() != null ? task.priority() : TaskPriority.LOW
+        );
+        return this.taskRepository.save(newTask);
     }
 
     @Override
@@ -61,7 +77,6 @@ public class TaskService implements CreateTaskUseCase, GetTaskUseCase, UpdateTas
 
     @Override
     public void deleteTask(Long id) {
-        Optional<Task> optionalTask = this.taskRepository.findById(id);
         if (this.taskRepository.findById(id).isEmpty()) {
             throw new TaskNotFoundException("Task with ID " + id + " not found.");
         }

@@ -9,7 +9,7 @@ public class BoardMapper {
         if(entity == null){
             return null;
         }
-        return new Board(entity.getId(), entity.getName());
+        return new Board(entity.getId(), entity.getUserId(), entity.getName());
     }
 
     public static BoardEntity toPersistence(Board board){
@@ -18,6 +18,7 @@ public class BoardMapper {
         }
         return new BoardEntity(
                 board.id(),
+                board.userId(),
                 board.name()
         );
     }

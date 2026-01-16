@@ -50,7 +50,7 @@ bin/
 
 # Environment files
 .env
-*.env
+.env.prod
 
 # Others
 *.swp
