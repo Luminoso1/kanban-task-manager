@@ -1,0 +1,25 @@
+version: "3.8"
+
+services:
+  mysql:
+    image: docker.io/mysql:8.4
+    container_name: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_DATABASE: ${DB_NAME}
+    ports:
+      - "3306:3306"
+    volumes:
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+      - mysql-data:/var/lib/mysql
+    networks:
+      - micro-net
+
+volumes:
+  mysql-data:
+
+networks:
+  micro-net:
+    driver: bridge

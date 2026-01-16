@@ -36,11 +36,11 @@ git clone https://github.com/tu-usuario/kanban-task-manager.git
 cd kanban-task-manager
 ```
 
-### 2. Crea las bases de datos en MySQL
-```sql
-    CREATE DATABASE kanban_board_db;
-    CREATE DATABASE kanban_task_db;
+### 2. Inicia la base de datos
+```bash
+    podman-compose --env-file .env up
 ```
+Automáticamente se crean las bases de datos necesarias. 
 
 ### 3. Configura las variables de entorno
 Configura estas variables en IntelliJ IDEA 
