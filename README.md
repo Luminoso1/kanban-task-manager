@@ -10,7 +10,7 @@ Este proyecto es un sistema de gestión de tareas estilo Kanban, diseñado con u
 - **🔍 eureka**: Service discovery para registrar y ubicar servicios.
 - **🌐 gateway**: Enrutador que actúa como punto de entrada único.
 - **📋 board**: Gestión de tableros.
-- **✅ task**: Gestión de tareas asociadas a tableros.
+- **✅ task**: Gestión de tareas asociadas a tableros..
 
 ---
 
