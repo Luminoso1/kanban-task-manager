@@ -36,15 +36,10 @@ git clone https://github.com/tu-usuario/kanban-task-manager.git
 cd kanban-task-manager
 ```
 
-### 2. Inicia la base de datos
-```bash
-    podman-compose --env-file .env up
-```
-Automáticamente se crean las bases de datos necesarias. 
-
-### 3. Configura las variables de entorno
+### 2. Configura las variables de entorno
 Configura estas variables en IntelliJ IDEA 
 (Run > Edit Configurations > Environment Variables) o en tu sistema operativo.
+Debes hacer esto por cada microservice, así:
 
 #### cofig-server
 ```
@@ -78,6 +73,21 @@ TASK_DB_USERNAME=root
 TASK_DB_PASSWORD=tu_contraseña
 TASK_SERVICE_URL=http://localhost:8080/tasks
 ```
+
+#### En el root debes tener un .env, para variables del contenedor de la base de datos
+#### .env
+```
+MYSQL_ROOT_PASSWORD=
+DB_USERNAME=
+DB_PASSWORD=
+DB_NAME=
+```
+
+### 3. Inicia la base de datos
+```bash
+    podman-compose --env-file .env up
+```
+Automáticamente se crean las bases de datos necesarias.
 
 
 ### 4. Ejecuta los servicios
